@@ -22,8 +22,7 @@ func TotalInCategory(payments []types.Payment, category types.Category) types.Mo
 		if payment.Category != category {
 			continue
 		}
-		moneyPayments := payment.Amount
-		sum += moneyPayments
+		sum += payment.Amount
 	}
 	return sum
 }

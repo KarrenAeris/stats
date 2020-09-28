@@ -9,12 +9,12 @@ import (
 func ExampleAvg() {
 	payments := []types.Payment{
 		{
-			ID:       2,
+			ID:       1,
 			Amount:   53_00,
 			Category: "Cat",
 		},
 		{
-			ID:       1,
+			ID:       2,
 			Amount:   51_00,
 			Category: "Cat",
 		},
