@@ -1,9 +1,10 @@
 package stats
 
 import (
-	"github.com/KarrenAeris/bank/v2/pkg/types"
+	"github.com/KarrenAeris/bank/pkg/types"
 )
 
+//Avg расчитовает среднюю сумму платежа
 func Avg(payments []types.Payment) types.Money {
 	sum := types.Money(0)
 	n := types.Money(0)
@@ -14,12 +15,15 @@ func Avg(payments []types.Payment) types.Money {
 	return sum / n
 }
 
-func TotalInCategory (payments []types.Payment, category types.Category) types.Money {
+// TotalInCategory находит 	сумму покупок в определённой категории.
+func TotalInCategory(payments []types.Payment, category types.Category) types.Money {
 	sum := types.Money(0)
 	for _, payment := range payments {
-		if category == payment.Category {
-			sum += payment.Amount
+		if payment.Category != category {
+			continue
 		}
+		moneyPayments := payment.Amount
+		sum += moneyPayments
 	}
 	return sum
 }
