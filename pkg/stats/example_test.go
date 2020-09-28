@@ -3,25 +3,28 @@ package stats
 import (
 	"fmt"
 
-	"github.com/KarrenAeris/bank/pkg/types"
+	"github.com/KarrenAeris/bank/v2/pkg/types"
 )
 
 func ExampleAvg() {
 	payments := []types.Payment{
 		{
-			ID:       2,
+			ID:       1,
 			Amount:   53_00,
 			Category: "Cat",
+			Status:   types.StatusOk,
 		},
 		{
-			ID:       1,
+			ID:       2,
 			Amount:   51_00,
 			Category: "Cat",
+			Status:   types.StatusOk,
 		},
 		{
 			ID:       3,
 			Amount:   52_00,
 			Category: "Cat",
+			Status:   types.StatusFail,
 		},
 	}
 
@@ -36,16 +39,19 @@ func ExampleTotalInCategory() {
 			ID:       2,
 			Amount:   53_00,
 			Category: "Cafe",
+			Status:   types.StatusOk,
 		},
 		{
 			ID:       1,
 			Amount:   51_00,
 			Category: "Cafe",
+			Status:   types.StatusOk,
 		},
 		{
 			ID:       3,
 			Amount:   52_00,
 			Category: "Restaurant",
+			Status:   types.StatusFail,
 		},
 	}
 
