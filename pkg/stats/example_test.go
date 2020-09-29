@@ -1,61 +1,29 @@
 package stats
 
 import (
-	"fmt"
-
+	"reflect"
+	"testing"
 	"github.com/KarrenAeris/bank/v2/pkg/types"
 )
 
-func ExampleAvg() {
+func TestCategoriesAvg(t *testing.T) {
 	payments := []types.Payment{
-		{
-			ID:       1,
-			Amount:   53_00,
-			Category: "Cat",
-			Status:   types.StatusOk,
-		},
-		{
-			ID:       2,
-			Amount:   51_00,
-			Category: "Cat",
-			Status:   types.StatusOk,
-		},
-		{
-			ID:       3,
-			Amount:   52_00,
-			Category: "Cat",
-			Status:   types.StatusFail,
-		},
+		{ID: 1, Category: "auto", Amount: 3_000_00},
+		{ID: 1, Category: "food", Amount: 5_000_00},
+		{ID: 1, Category: "auto", Amount: 6_000_00},
+		{ID: 1, Category: "auto", Amount: 9_000_00},
+		{ID: 1, Category: "clothes", Amount: 4_000_00},
+	}
+	expected := map[types.Category]types.Money{
+		"auto": 6_000_00,
+		"food": 5_000_00,
+		"clothes":  4_000_00,
 	}
 
-	fmt.Println(Avg(payments))
+	result := CategoriesAvg(payments)
 
-	//Output: 5200
-}
-
-func ExampleTotalInCategory() {
-	payments := []types.Payment{
-		{
-			ID:       2,
-			Amount:   53_00,
-			Category: "Cafe",
-			Status:   types.StatusOk,
-		},
-		{
-			ID:       1,
-			Amount:   51_00,
-			Category: "Cafe",
-			Status:   types.StatusOk,
-		},
-		{
-			ID:       3,
-			Amount:   52_00,
-			Category: "Restaurant",
-			Status:   types.StatusFail,
-		},
+	if !reflect.DeepEqual(expected, result) {
+		t.Errorf("invalid result, expected: %v, actual %v", expected, result)
 	}
-
-	fmt.Println(TotalInCategory(payments, "Cafe"))
-
-	//Output: 10400
 }
+
