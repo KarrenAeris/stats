@@ -6,7 +6,7 @@ import (
 	"github.com/KarrenAeris/bank/v2/pkg/types"
 )
 
-func TestCategoriesAvg(t *testing.T) {
+func TestCategoriesAvg_User(t *testing.T) {
 	payments := []types.Payment{
 		{ID: 1, Category: "auto", Amount: 3_000_00},
 		{ID: 1, Category: "food", Amount: 5_000_00},
